@@ -1,0 +1,53 @@
+<section class="content" [ngClass]="{'day-background': isDay, 'night-background': !isDay}">
+  <header class="imgBackground">
+    <img *ngIf="isDay" src="assets/bg-desktop-dark.jpg" alt="">
+    <img *ngIf="!isDay" src="assets/bg-desktop-light.jpg" alt="">
+  </header>
+  <div class="ToDoBox">
+    <div class="headerBox">
+      <div class="ToDoTitle">
+        <h1>T O D O</h1>
+      </div>
+        <div class="bottomColor" (click)="toggle()">
+          <img *ngIf="isDay" src="assets/icon-sun.svg" alt="">
+          <img *ngIf="!isDay" src="assets/icon-moon.svg" alt="">
+      </div>
+    </div>
+    <div class="inputBox" [ngClass]="{'dayBox-background': isDay, 'nightBox-background': !isDay}">
+      <div class="iconCheck"></div>
+      <div class="input" >
+        <input type="text" name="" id="" placeholder="Enter your task..." [(ngModel)]="task" (keyup.enter)="onEnter()" [ngClass]="{'day-colorInput': isDay, 'night-colorInput': !isDay}">
+      </div>
+    </div>
+    <div class="listBox">
+      <div class="taskBox"  *ngFor="let task of tasks; let i = index" [ngClass]="{'dayBox-background': isDay, 'nightBox-background': !isDay}"
+        ngSwitchCase="viewState === 'all' || (viewState === 'active' && !task.isClicked) || (viewState === 'completed' && task.isClicked)">>
+        <div class="iconCheck" (click)="onClick(i)" [ngClass]="{'isCheck': task.isClicked}">
+          <img class="img-icon" src="assets/icon-check.svg" alt="">
+        </div>
+        <div class="task">
+          <p class="taskText" [ngClass]="{'line-effect': task.isClicked}">{{ task.task }}</p>
+        </div>
+        <div class="iconDelete" (click)="deleteTask(i)">
+          <img src="assets/icon-cross.svg" alt="">
+        </div>
+      </div>
+      <footer class="footerListBox" [ngClass]="{'dayBox-background': isDay, 'nightBox-background': !isDay}">
+        <div class="itemsLeft">
+          <p>{{ unclickedTasksCount }} items Left</p>
+        </div>
+        <div class="menuTask">
+          <ul>
+            <li class="footer-li" (click)="showAllTasks()">All</li>
+            <li class="footer-li" (click)="showActiveTasks()">Active</li>
+            <li class="footer-li" (click)="showCompletedTasks()">Complete</li>
+          </ul>
+        </div>
+        <div class="clear">
+          <p>Clear Completed</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+</section>
+<router-outlet></router-outlet>

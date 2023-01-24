@@ -1,0 +1,165 @@
+/*Ajuste de contenido*/
+
+.content{
+    height: 695px;
+    border: solid 1px red;
+}
+
+/*Selección del color de fondo con ngClass*/
+.day-background{
+    background-color: hsl(235, 21%, 11%);
+}
+
+.night-background{
+    background-color: hsl(236, 33%, 92%);
+}
+/*Cuadro contenedor del to do*/
+
+.ToDoBox{
+    border: solid 1px blue;
+    color: white;
+    display:grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    top: -200px;
+}
+
+/*Imagen de fondo*/
+.imgBackground img{
+    object-fit: cover;
+    width: 100%;
+}
+
+/*Cabecera del to do box*/
+.headerBox{
+    display: flex;
+    gap: 300px;
+}
+
+h1{
+    font-size: 35px;
+    font-weight: 600;
+}
+
+p,li{
+    font-size: 14px;
+}
+
+.taskText{
+    font-size: 14px;
+    font-weight: 200;
+}
+
+/*Botton Cambio de color*/
+
+.bottomColor:hover{
+    cursor: pointer;
+}
+
+/*Icono de verificacion*/
+
+.img-icon{
+    display: none;
+}
+
+.iconCheck{
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 1px solid gray;
+    margin-left: 20px;
+}
+
+.iconCheck:hover{
+    background-image: linear-gradient(90deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    cursor: pointer;
+    .img-icon{
+        display: initial;
+    }
+}
+
+.isCheck{
+    background-image: linear-gradient(90deg, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+    .img-icon{
+        display: initial;
+    }
+}
+
+.iconDelete:hover, .footer-li:hover{
+    cursor: pointer;
+}
+
+
+
+/*input de la tarea y el cuadro de la tarea*/
+.inputBox, .taskBox{
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: 5% 75% 20%;
+    align-items: center;
+    height: 50px;
+    gap: 30px;
+}
+.dayBox-background{
+    background-color: hsl(235, 24%, 19%);
+    color: white;
+}
+
+.nightBox-background{
+    background-color: hsl(0, 0%, 98%);
+    color: hsl(235, 19%, 35%);
+}
+
+.listBox{
+    margin-top: 30px;
+}
+
+.taskBox{
+    margin: 0;
+    border-bottom: 0.5px solid hsl(236, 8%, 60%);
+}
+
+/*Desactivando el diseño por defecto del input*/
+
+input{
+    background-color: transparent;
+    border-color: transparent;
+}
+.day-colorInput{
+    color: white;
+}
+
+.night-colorInput{
+    color: black;
+}
+input:active , input:focus{
+    outline: none;
+    border: none;
+}
+
+/*Diseño del footer del todo box*/
+.footerListBox, ul{
+    display: flex;
+}
+
+.footerListBox{
+    align-items: center;
+    padding: 10px;
+    height: 40px;
+    justify-content: space-between;
+}
+
+ul{
+    list-style: none;
+    gap: 10px;
+}
+
+/*Linea de tarea completada*/
+
+.line-effect{
+    text-decoration-line: line-through;
+}
