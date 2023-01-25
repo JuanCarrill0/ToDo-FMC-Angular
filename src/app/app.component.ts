@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
@@ -6,12 +6,13 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'ToDo';
   
   task:string = '';
   tasks: {task:string, isClicked:boolean}[] = [];
 
+  public screenWidth: number = 0;
   public isDay: boolean = true;
   public isCheck: boolean = false;
   public dayClass: string = 'day-background';
@@ -20,8 +21,13 @@ export class AppComponent {
 
   public taskActiveBox : boolean = false;
 
-  constructor(){
+  constructor(private win: Window){
     this.unclickedTasksCount = this.tasks.filter(task => !task.isClicked).length;;
+  }
+
+
+  ngOnInit() {
+    this.screenWidth = this.win.innerWidth;
   }
 
   public viewState: string = 'all';
@@ -66,5 +72,16 @@ export class AppComponent {
     this.taskActiveBox = !this.taskActiveBox;
     return this.tasks.filter(task => task.isClicked === false);
   }
+
+  filterTasks(task: { task: string, isClicked: boolean }, viewState: string) {
+    if (viewState === 'all') {
+       return true;
+    } else if (viewState === 'active') {
+       return !task.isClicked;
+    } else if (viewState === 'completed') {
+       return task.isClicked;
+    }
+    return true;
+ }
 
 }

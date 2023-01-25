@@ -2,7 +2,6 @@
 
 .content{
     height: 695px;
-    border: solid 1px red;
 }
 
 /*Selección del color de fondo con ngClass*/
@@ -13,10 +12,10 @@
 .night-background{
     background-color: hsl(236, 33%, 92%);
 }
+
 /*Cuadro contenedor del to do*/
 
 .ToDoBox{
-    border: solid 1px blue;
     color: white;
     display:grid;
     justify-content: center;
@@ -162,4 +161,34 @@ ul{
 
 .line-effect{
     text-decoration-line: line-through;
+}
+
+/*Responsive Design*/
+@media (max-width: 900px){
+    .ToDoBox{
+        top: -100px;
+    }
+}
+@media (max-width: 640px){
+    .ToDoBox{
+        top: 0;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    h1{
+        font-size: 20px;
+    }
+
+    .headerBox{
+        gap: 240px;
+    }
+
+    p,li{
+        font-size: 12px;
+    }
+
+    .taskBox{
+        grid-template-columns: 5% 68% 18%;
+    }
 }

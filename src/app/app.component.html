@@ -1,9 +1,13 @@
+<!-- Contenido principal de toda la app en la seccion "Content"  -->
+<!-- Uso de ngClass para configurar el fondo del contenido principal con base la selección dada -->
 <section class="content" [ngClass]="{'day-background': isDay, 'night-background': !isDay}">
-  <header class="imgBackground">
-    <img *ngIf="isDay" src="assets/bg-desktop-dark.jpg" alt="">
-    <img *ngIf="!isDay" src="assets/bg-desktop-light.jpg" alt="">
+  <header class="imgBackground" 
+  [ngStyle]="{'background-image': 'url(assets/bg-' + (screenWidth < 640 ? 'mobile-' : 'desktop-') + (isDay ? 'dark' : 'light') + '.jpg)'}">>
+    <!-- Cabecera principal de la app donde establece la imagen background -->
   </header>
+  <!-- Div de la caja ToDo Principal -->
   <div class="ToDoBox">
+    <!-- Div de la cabecera de la caja principal donde está el titulo y la selección de tema dia/noche -->
     <div class="headerBox">
       <div class="ToDoTitle">
         <h1>T O D O</h1>
@@ -13,27 +17,34 @@
           <img *ngIf="!isDay" src="assets/icon-moon.svg" alt="">
       </div>
     </div>
+    <!-- Div del input donde se escriben las tareas, con sus respectivos cambios dado el tema selecionado -->
     <div class="inputBox" [ngClass]="{'dayBox-background': isDay, 'nightBox-background': !isDay}">
       <div class="iconCheck"></div>
       <div class="input" >
+        <!-- Al dar enter, la tarea se guarda en la variables "Task" para posteriormente guardarse en una lista "Tasks" en el metodo onEnter() -->
         <input type="text" name="" id="" placeholder="Enter your task..." [(ngModel)]="task" (keyup.enter)="onEnter()" [ngClass]="{'day-colorInput': isDay, 'night-colorInput': !isDay}">
       </div>
     </div>
+    <!-- Div de la lista de tareas -->
     <div class="listBox">
-      <div class="taskBox"  *ngFor="let task of tasks; let i = index" [ngClass]="{'dayBox-background': isDay, 'nightBox-background': !isDay}"
-        ngSwitchCase="viewState === 'all' || (viewState === 'active' && !task.isClicked) || (viewState === 'completed' && task.isClicked)">>
-        <div class="iconCheck" (click)="onClick(i)" [ngClass]="{'isCheck': task.isClicked}">
-          <img class="img-icon" src="assets/icon-check.svg" alt="">
-        </div>
-        <div class="task">
-          <p class="taskText" [ngClass]="{'line-effect': task.isClicked}">{{ task.task }}</p>
-        </div>
-        <div class="iconDelete" (click)="deleteTask(i)">
-          <img src="assets/icon-cross.svg" alt="">
-        </div>
-      </div>
+      <!-- Filtro de las tareas por medio del task-filter.pipe.ts con base a lo seleccionado en el footer -->
+      <div *ngFor="let task of tasks | filter: task : viewState ; let i = index">
+            <div class="taskBox" [ngClass]="{'dayBox-background': isDay, 'nightBox-background': !isDay}">
+                <div class="iconCheck" (click)="onClick(i)" [ngClass]="{'isCheck': task.isClicked}">
+                    <img class="img-icon" src="assets/icon-check.svg" alt="">
+                </div>
+                <div class="task">
+                    <p class="taskText" [ngClass]="{'line-effect': task.isClicked}">{{ task.task }}</p>
+                </div>
+                <div class="iconDelete" (click)="deleteTask(i)">
+                    <img src="assets/icon-cross.svg" alt="">
+                </div>
+            </div>
+    </div>    
+      <!-- Footer de la lista de tareas faltantes y sus respectivas opciones de muestreo -->
       <footer class="footerListBox" [ngClass]="{'dayBox-background': isDay, 'nightBox-background': !isDay}">
         <div class="itemsLeft">
+          <!-- Variable del numero de tareas que no se han dado click para completar que se gestiona con el método onTaskListUpdated() -->
           <p>{{ unclickedTasksCount }} items Left</p>
         </div>
         <div class="menuTask">
