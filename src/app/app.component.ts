@@ -84,4 +84,8 @@ export class AppComponent implements OnInit {
     return true;
  }
 
+  deletedTaskCompleted(){
+    this.tasks = this.tasks.filter(task => !task.isClicked);
+  }
+
 }

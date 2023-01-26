@@ -19,9 +19,11 @@ import { TaskFilterPipe } from '../../../ToDo-FrontendMentorChallengue/src/app/t
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    CommonModule,
+    CommonModule
   ],
-  providers: [],
+  providers: [
+    { provide: Window, useValue: window }
+  ],
   bootstrap: [AppComponent]
 })
 

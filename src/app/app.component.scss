@@ -21,10 +21,15 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    top: -200px;
+    top: -100px;
 }
 
 /*Imagen de fondo*/
+
+.imgBackground{
+    height: 200px;
+}
+
 .imgBackground img{
     object-fit: cover;
     width: 100%;
@@ -88,7 +93,7 @@ p,li{
     }
 }
 
-.iconDelete:hover, .footer-li:hover{
+.iconDelete:hover, .footer-li:hover, .clearBottom:hover{ 
     cursor: pointer;
 }
 
@@ -163,6 +168,7 @@ ul{
     text-decoration-line: line-through;
 }
 
+
 /*Responsive Design*/
 @media (max-width: 900px){
     .ToDoBox{
@@ -171,7 +177,7 @@ ul{
 }
 @media (max-width: 640px){
     .ToDoBox{
-        top: 0;
+        top: -100px;
         width: 80%;
         margin: 0 auto;
     }
