@@ -26,9 +26,9 @@
       </div>
     </div>
     <!-- Div de la lista de tareas -->
-    <div class="listBox">
+    <div class="listBox" cdkDropList (cdkDropListDropped)="drop($event)" >
       <!-- Filtro de las tareas por medio del task-filter.pipe.ts con base a lo seleccionado en el footer -->
-      <div *ngFor="let task of tasks | filter: task : viewState ; let i = index">
+      <div *ngFor="let task of tasks | filter: task : viewState ; let i = index" cdkDrag>
             <div class="taskBox" [ngClass]="{'dayBox-background': isDay, 'nightBox-background': !isDay}">
                 <div class="iconCheck" (click)="onClick(i)" [ngClass]="{'isCheck': task.isClicked}">
                     <img class="img-icon" src="assets/icon-check.svg" alt="">

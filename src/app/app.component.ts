@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-root',
@@ -88,4 +89,7 @@ export class AppComponent implements OnInit {
     this.tasks = this.tasks.filter(task => !task.isClicked);
   }
 
+  drop(event: CdkDragDrop<{task:string, isClicked:boolean}[]>){
+    moveItemInArray(this.tasks, event.previousIndex, event.currentIndex);
+  }
 }

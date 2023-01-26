@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { TaskFilterPipe } from '../../../ToDo-FrontendMentorChallengue/src/app/task-filter.pipe';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 
 
@@ -19,7 +20,8 @@ import { TaskFilterPipe } from '../../../ToDo-FrontendMentorChallengue/src/app/t
     FormsModule,
     BrowserModule,
     AppRoutingModule,
-    CommonModule
+    CommonModule,
+    DragDropModule
   ],
   providers: [
     { provide: Window, useValue: window }
