@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
   title = 'ToDo';
@@ -16,6 +17,7 @@ export class AppComponent implements OnInit {
   public screenWidth: number = 0;
   public isDay: boolean = true;
   public isCheck: boolean = false;
+  public selectedSection: boolean[] = [false, false, false];
   public dayClass: string = 'day-background';
   public nightClass: string = 'night-background';
   public unclickedTasksCount: number;
@@ -32,16 +34,26 @@ export class AppComponent implements OnInit {
   }
 
   public viewState: string = 'all';
-  
-  showAllTasks() {
-    this.viewState = 'all';
-  }
-  showActiveTasks() {
-    this.viewState = 'active';
-  }
 
-  showCompletedTasks() {
-    this.viewState = 'completed';
+  selectSection(index: number) {
+    for (let i = 0; i < this.selectedSection.length; i++) {
+    this.selectedSection[i] = (i === index);
+    }
+  }
+  
+  showTaskSection(index : number) {
+    switch (index) {
+      case 0:
+        this.viewState = 'all';
+        break;
+      case 1:
+        this.viewState = 'active';
+        break;
+      case 2:
+        this.viewState = 'completed';
+        break;
+    }
+    this.selectSection(index);
   }
 
   public toggle(): void {

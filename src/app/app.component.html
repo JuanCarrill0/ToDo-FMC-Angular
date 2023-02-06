@@ -22,7 +22,8 @@
       <div class="iconCheck"></div>
       <div class="input" >
         <!-- Al dar enter, la tarea se guarda en la variables "Task" para posteriormente guardarse en una lista "Tasks" en el metodo onEnter() -->
-        <input type="text" name="" id="" placeholder="Enter your task..." [(ngModel)]="task" (keyup.enter)="onEnter()" [ngClass]="{'day-colorInput': isDay, 'night-colorInput': !isDay}">
+        <label for="inputTask"></label>
+        <input type="text" id="inputTask" placeholder="Enter your task..." [(ngModel)]="task" (keyup.enter)="onEnter()" [ngClass]="{'day-colorInput': isDay, 'night-colorInput': !isDay}">
       </div>
     </div>
     <!-- Div de la lista de tareas -->
@@ -49,9 +50,9 @@
         </div>
         <div class="menuTask">
           <ul>
-            <li class="footer-li" (click)="showAllTasks()">All</li>
-            <li class="footer-li" (click)="showActiveTasks()">Active</li>
-            <li class="footer-li" (click)="showCompletedTasks()">Complete</li>
+            <li class="footer-li"  [ngClass]="{'liSelected': selectedSection[0]}" (click)="showTaskSection(0)">All</li>
+            <li class="footer-li"  [ngClass]="{'liSelected': selectedSection[1]}" (click)="showTaskSection(1)">Active</li>
+            <li class="footer-li"  [ngClass]="{'liSelected': selectedSection[2]}"(click)="showTaskSection(2)">Complete</li>
           </ul>
         </div>
         <div class="clear">

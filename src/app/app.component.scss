@@ -27,7 +27,7 @@
 /*Imagen de fondo*/
 
 .imgBackground{
-    height: 200px;
+    height: 250px;
 }
 
 .imgBackground img{
@@ -47,7 +47,7 @@ h1{
 }
 
 p,li{
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .taskText{
@@ -152,6 +152,7 @@ input:active , input:focus{
 }
 
 .footerListBox{
+    color: hsl(235, 19%, 35%);
     align-items: center;
     padding: 10px;
     height: 40px;
@@ -161,6 +162,20 @@ input:active , input:focus{
 ul{
     list-style: none;
     gap: 10px;
+}
+
+    .dayHover:hover{
+        color: hsl(0, 0%, 98%) ;
+    }
+
+
+    .nightHover:hover{
+        color: hsl(235, 24%, 19%);
+    }
+
+
+.liSelected{
+    color: hsl(234, 65%, 52%);
 }
 
 /*Linea de tarea completada*/
